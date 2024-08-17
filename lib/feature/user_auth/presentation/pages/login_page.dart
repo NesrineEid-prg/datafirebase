@@ -3,6 +3,7 @@ import 'package:datafire/feature/user_auth/presentation/pages/signup_page.dart';
 import 'package:datafire/feature/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -30,13 +31,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('Login',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 27,
-                  fontWeight: FontWeight.bold)),
-          backgroundColor: const Color.fromARGB(255, 9, 178, 230)),
+      // appBar: AppBar(
+      //     title: const Text('Login',
+      //         style: TextStyle(
+      //             color: Colors.white,
+      //             fontSize: 27,
+      //             fontWeight: FontWeight.bold)),
+      //     backgroundColor: const Color.fromARGB(255, 9, 178, 230)),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -200,13 +201,12 @@ class _LoginPageState extends State<LoginPage> {
       _issign = false;
     });
 
-    Navigator.pushNamed(context, "/home");
-    // if (user != null) {
-    //   Fluttertoast.showToast(msg: "User is successfully signed in");
-    //   Navigator.pushNamed(context, "/home");
-    // } else {
-    //   Fluttertoast.showToast(msg: "some error occured");
-    // }
+    if (user != null) {
+      Fluttertoast.showToast(msg: "User is successfully signed in");
+      Navigator.pushNamed(context, "/home");
+    } else {
+      Fluttertoast.showToast(msg: "some error occured");
+    }
   }
 
   Future<UserCredential> signInWithGoogle() async {
