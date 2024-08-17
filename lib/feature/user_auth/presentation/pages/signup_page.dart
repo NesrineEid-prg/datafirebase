@@ -31,14 +31,6 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign Up',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 27,
-                fontWeight: FontWeight.bold)),
-        backgroundColor: const Color.fromARGB(255, 9, 178, 230),
-      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10),

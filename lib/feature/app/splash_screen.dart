@@ -24,17 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            "Welcome ",
-            style: TextStyle(
-                color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 30),
-          ),
-          Image.asset("assets/icon/logoo.png")
-        ],
-      ),
+      child: Image.asset("assets/icon/logoo.png"),
     );
   }
 }

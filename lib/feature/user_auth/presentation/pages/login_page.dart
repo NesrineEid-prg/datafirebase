@@ -31,13 +31,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //     title: const Text('Login',
-      //         style: TextStyle(
-      //             color: Colors.white,
-      //             fontSize: 27,
-      //             fontWeight: FontWeight.bold)),
-      //     backgroundColor: const Color.fromARGB(255, 9, 178, 230)),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -166,27 +159,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-// }
-//  -signInWithGoogle()async{
-//     final GoogleSignIn _googleSignIn = GoogleSignIn();
-
-//     try{
-//       final GoogleSignInAccount? googleSignInAccount= await _googleSignIn.signIn();
-// if(GoogleSignInAuthentication != null){
-//   GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
-//   final AuthCredential credential =GoogleAuthProvider.credential(
-//     idToken: googleSignInAuthentication.idToken,
-//     accessToken:  googleSignInAuthentication.accessToken
-//   );
-//   await _firebaseAuth.signupwithCredential(credential);
-//   Navigator.pushNamed(context, "/home");
-// }
-//     }catch(e){
-//       Fluttertoast.showToast(msg: 'someerror${e}');
-//     }
-
-//   }
-
   void _signIn() async {
     setState(() {
       _issign = true;
@@ -202,28 +174,32 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     if (user != null) {
-      Fluttertoast.showToast(msg: "User is successfully signed in");
+      Fluttertoast.showToast(
+        msg: "User is successfully signed in",
+        textColor: Colors.white,
+        fontSize: 20,
+      );
       Navigator.pushNamed(context, "/home");
     } else {
-      Fluttertoast.showToast(msg: "some error occured");
+      Fluttertoast.showToast(
+        msg: "some error occured,",
+        textColor: Colors.white,
+        fontSize: 20,
+      );
     }
   }
 
   Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
         await googleUser?.authentication;
 
-    // Create a new credential
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
 
-    // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
